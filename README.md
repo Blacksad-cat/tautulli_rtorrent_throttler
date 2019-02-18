@@ -21,6 +21,6 @@ The script automatically throttle rTorrent for the needed time and bandwidth. It
 This tutorial won't explain how to install rTorrent, ruTorrent, Tautully and Plex Media Server. 
 
 If you need to install one or serveral of those depencies, please refer to an external tutorial.
-That said, for an easy deployement with Docker containers, you can use the excellent [PlexGuide script](https://plexguide.com/)
+That said, for an easy deployement with Docker containers, you can use the excellent [PlexGuide script](https://plexguide.com/).
 If you need a VPN encapsulated version of rTorrent/ruTorrent, please refer to [rTorrentVPN](https://github.com/binhex/arch-rtorrentvpn)
 
