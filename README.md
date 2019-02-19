@@ -18,7 +18,7 @@ The script automatically throttle rTorrent for the needed time and bandwidth. It
 **Setup**   
 This tutorial won't explain how to install git, rTorrent, ruTorrent, Tautully and Plex Media Server. 
 
-If you need to install one or serveral of those depencies, please refer to an external tutorial. That been said, for an easy deployement with Docker containers, you can use the excellent [PlexGuide script](https://plexguide.com/). If you need a VPN encapsulated version of rTorrent/ruTorrent, [rTorrentVPN](https://github.com/binhex/arch-rtorrentvpn) is for you.
+If you need to install one or serveral of those depencies, please refer to an external tutorial. That been said, for an easy deployement with Docker containers, you can use the excellent [PlexGuide script](https://plexguide.com/). If you need a VPN encapsulated version of rTorrent/ruTorrent with port forwarding, [rTorrentVPN](https://github.com/binhex/arch-rtorrentvpn) is for you.
 
 **XMLRPC2SCGI**   
 XMLRPC2SCGI is a Ptyhon script allowing to send command to rTorrent deamon through its scgi port. 
@@ -63,7 +63,7 @@ SCGI_PORT=5000
 The white list avoid throttling torrent traffic for IPs in list. For exemple, you don't want to slow down your torrent traffic for local connexion. 
 The list is white space separated and allows cibr format. 
 ``` 
-WHITE_LIST="192.168.0.0/24"
+WHITE_LIST="192.168.1.0/24"
 ``` 
 You must tell the script your maximum upload and download rate, so it can throttle properly your connexion. If you have an unstable bandwidth, you should be conservative and put your lower rate. 
 Rate is given in B/s. The exemple shows a 50Mbps max upload.
