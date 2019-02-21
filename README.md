@@ -105,9 +105,9 @@ In "Triggers" tab select:
 Playback Start  
 Playback Stop  
 Playback Resume  
-Playback Pause 
-Transcode Decision Change 
-Watched  
+Playback Pause   
+Transcode Decision Change    
+Watched    
 
 In Arguments tab, fill out as following: 
 Playback Start  
