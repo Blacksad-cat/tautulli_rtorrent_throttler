@@ -101,7 +101,7 @@ And script file:
 ``` 
 tautulli_rtorrent_throttler.sh 
 ```  
-In "Triggers" tab select: 
+In "Triggers" tab select:   
 Playback Start  
 Playback Stop  
 Playback Resume  
@@ -142,7 +142,7 @@ Finally, we need to settup as timer checking if throttling is needed frequently.
 /home/user/scripts/tautulli_rtorrent_throttler.sh  -check
 ```  
 
-By default, the service is configured to run as root. But as there is no reason to run it with those priviledges, I recommend to change it. The user you will use must be part of syslog group. If not, you will miss logs. 
+By default, the service is configured to run as root. But as there is no reason to run it with those priviledges, I recommend to change it. The user you will use must be part of syslog group. If not, you will miss logs.  
 Open the service file with your favorite editor. 
 ``` 
 nano tautulli_rtorrent_throttler.service 
