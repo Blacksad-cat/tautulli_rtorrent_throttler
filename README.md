@@ -134,4 +134,25 @@ Watched
 ``` 
 -watched "{ip_address}" "{session_id}" "{remaining_duration}" "{stream_bandwidth}"
 ```  
+Save. 
+Tautulli configuration is done. 
+**Systemd timer**  
+Finally, we need to settup as timer checking if throttling is needed frequently. We will do that with a systemd timer, but you can use another system. All you need is calling the script with "check" flag. 
+``` 
+/home/user/scripts/tautulli_rtorrent_throttler.sh  -check
+```  
+
+By default, the service is configured to run as root. But as there is no reason to run it with those priviledges, I recommend to change it. The user you will use must be part of syslog group. If not, you will miss logs. 
+Open the service file with your favorite editor. 
+``` 
+nano tautulli_rtorrent_throttler.service 
+```  
+Update "User" and "Group" fields as your convenience and save the file. 
+Copy service and timer files to systemd folder. 
+``` 
+sudo cp tautulli_rtorrent_throttler.service /etc/systemd/system/
+sudo cp tautulli_rtorrent_throttler.timer /etc/systemd/system/
+chmod 664 /etc/systemd/system/tautulli_rtorrent_throttler.service 
+chmod 664 /etc/systemd/system/tautulli_rtorrent_throttler.timer 
+```  
 
