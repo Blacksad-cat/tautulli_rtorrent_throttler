@@ -1,0 +1,11 @@
+
+[Unit]
+Description=Plex Throttler Daemon
+
+[Service]
+User=my_user
+Group=my_group
+Type=simple
+ExecStart=/bin/bash /usr/bin/tautulli_rtorrent_throttler.sh -check
+Restart=always
+

@@ -1,0 +1,12 @@
+
+[Unit]
+Description=Plex throttler timer
+
+[Timer]
+OnUnitInactiveSec=10s
+OnBootSec=15s
+AccuracySec=5s
+
+[Install]
+WantedBy=timers.target
+
