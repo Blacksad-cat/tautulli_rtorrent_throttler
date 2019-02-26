@@ -14,7 +14,8 @@ The script automatically throttle rTorrent for the needed time and bandwidth. It
 [Tautully](https://github.com/Tautulli/Tautulli)  
 [XMLRPC2SCGI](https://github.com/rakshasa/rtorrent/wiki/RPC-Utility-XMLRPC2SCGI)  
 [Plex Media Server](https://www.plex.tv/)  
-[Git](https://git-scm.com/)
+[Git](https://git-scm.com/) 
+Python 
 
 **Setup**   
 This tutorial won't explain how to install git, rTorrent, ruTorrent, Tautully and Plex Media Server. 
