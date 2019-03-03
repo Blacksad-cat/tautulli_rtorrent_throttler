@@ -121,7 +121,7 @@ Playback Stop
 ```  
 Playback Resume  
 ``` 
--play "{ip_address}" "{session_id}" "{remaining_duration}" "{stream_bandwidth}"
+-resume "{ip_address}" "{session_id}" "{remaining_duration}" "{stream_bandwidth}"
 ```  
 Playback Pause 
 ``` 
@@ -129,7 +129,7 @@ Playback Pause
 ```  
 Transcode Decision Change 
 ``` 
--play "{ip_address}" "{session_id}" "{remaining_duration}" "{stream_bandwidth}"
+-resume "{ip_address}" "{session_id}" "{remaining_duration}" "{stream_bandwidth}"
 ```  
 Watched  
 ``` 
