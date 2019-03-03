@@ -45,7 +45,7 @@ Move the script and add rights (could be at any location accessible to user runn
 We need to install and configure the throttling script. 
 First, clone git repository. 
 ``` 
-cd 
+cd /tmp  
 git clone https://github.com/Blacksad-cat/tautulli_rtorrent_throttler.git
 ``` 
 **Script config**  
