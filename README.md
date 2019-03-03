@@ -33,7 +33,7 @@ git clone https://github.com/rakshasa/rtorrent-vagrant.git
 Move the script and add rights (could be at any location accessible to user running Tautulli). 
 
 ``` 
- sudo mv rtorrent-vagrant/scripts/xmlrpc2scgi.py /usr/bin/
+ sudo cp rtorrent-vagrant/scripts/xmlrpc2scgi.py /usr/bin/
  sudo chmod 775 /home/user/scripts/xmlrpc2scgi.py
 ``` 
  Clean unwanted files
