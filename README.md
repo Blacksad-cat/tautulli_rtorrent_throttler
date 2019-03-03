@@ -157,4 +157,8 @@ sudo cp tautulli_rtorrent_throttler.timer /etc/systemd/system/
 sudo chmod 664 /etc/systemd/system/tautulli_rtorrent_throttler.service 
 sudo chmod 664 /etc/systemd/system/tautulli_rtorrent_throttler.timer 
 ```  
-Enable the service and start the timer.
+Enable and start the timer.
+```  
+sudo systemctl enable tautulli_rtorrent_throttler.timer   
+sudo systemctl start tautulli_rtorrent_throttler.timer   
+```  
