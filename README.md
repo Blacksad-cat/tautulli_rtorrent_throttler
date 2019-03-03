@@ -90,7 +90,7 @@ Save the script (Ctrl+x from nano).
 Let's move it to an accessible location (could be at any location accessible to user running Tautulli). 
 ``` 
  sudo cp tautulli_rtorrent_throttler.sh /usr/bin/ 
- sudo chmod 775 /home/user/scripts/tautulli_rtorrent_throttler.sh 
+ sudo chmod 775 /usr/bin/tautulli_rtorrent_throttler.sh 
 ```  
 **Tautulli config**  
 Open Tautulli settings page, click "Notification Agents", then "Add a Notification Agent". Choose "Script".
@@ -141,7 +141,7 @@ Tautulli configuration is done.
 **Systemd timer**  
 Finally, we need to settup as timer checking if throttling is needed frequently. We will do that with a systemd timer, but you can use another system. All you need is calling the script with "check" flag. 
 ``` 
-/home/user/scripts/tautulli_rtorrent_throttler.sh  -check
+/usr/bin/tautulli_rtorrent_throttler.sh  -check
 ```  
 
 By default, the service is configured to run as root. But as there is no reason to run it with those priviledges, I recommend to change it. The user you will use must be part of syslog group. If not, you will miss logs.  
