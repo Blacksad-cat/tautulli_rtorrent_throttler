@@ -163,55 +163,50 @@ apply_throttling() {
 # Check if throttling is needed and apply it
 # Remove throttling if all playing done or pause timeout
 check_for_throttling() {
-    if [ "$(id -u)" != "0" ]; then
-        print_msg "Sorry, throttling check needs to be root."
-        exit 1
-    else
-        if [ -f "$MAP_FILE" ]; then
-            (
-            flock -x 199
-            source -- "$MAP_FILE"
-            now_sec=`date +%s`
-            bandwidth_to_throttle=0
-            for i in "${!timing_map[@]}"
-            do
-				if [ "$i" != "applied" ]; then
-					IFS=':' read -ra stream_arr <<< "${timing_map[$i]}"
-					if [ "${stream_arr[0]}" -gt $now_sec ]; then
-						let "remains=(${stream_arr[0]} - $now_sec) / 60"
-						print_msg "Remains $remains min. on stream $i"
-						let "bandwidth_to_throttle=$bandwidth_to_throttle + ${stream_arr[1]}"
-					else
-						print_msg "Stream $i done"
-						unset timing_map[$i]
-					fi
-				fi
-            done
-
-            if [ $bandwidth_to_throttle -gt 0 ]; then
-                if [ "${timing_map[applied]}" != "$bandwidth_to_throttle" ]; then
-					bandwidth_to_throttle_adj=$(($bandwidth_to_throttle*(100+$SAFETY_FACTOR)/100))
-					upload_limit=$(($MAX_UPLOAD_RATE-$bandwidth_to_throttle_adj))
-					if [ "$THROTTLE_UPLOAD" == "true" ]; then
-						download_limit=$(($MAX_DOWNLOAD_RATE-($bandwidth_to_throttle*($DOWNLOAD_THROTTLE_FACTOR+$SAFETY_FACTOR)/100)))
-					else
-						download_limit=0
-					fi
-                    print_msg "External streams requiere $(($bandwidth_to_throttle/1024))kB/s. Throttling set at $(($download_limit/1024))/$(($upload_limit/1024)) kB/s"
-                    timing_map[applied]="$bandwidth_to_throttle"
-					apply_throttling $download_limit $upload_limit
-                fi
-            else
-                if [ "${timing_map[applied]}" != "FALSE" ]; then
-                    print_msg "No external client remaining. Throttling removed."
-                    timing_map[applied]="FALSE"
-					apply_throttling 0 0
+    if [ -f "$MAP_FILE" ]; then
+        (
+        flock -x 199
+        source -- "$MAP_FILE"
+        now_sec=`date +%s`
+        bandwidth_to_throttle=0
+        for i in "${!timing_map[@]}"
+        do
+            if [ "$i" != "applied" ]; then
+                IFS=':' read -ra stream_arr <<< "${timing_map[$i]}"
+                if [ "${stream_arr[0]}" -gt $now_sec ]; then
+                    let "remains=(${stream_arr[0]} - $now_sec) / 60"
+                    print_msg "Remains $remains min. on stream $i"
+                    let "bandwidth_to_throttle=$bandwidth_to_throttle + ${stream_arr[1]}"
+                else
+                    print_msg "Stream $i done"
+                    unset timing_map[$i]
                 fi
             fi
+        done
 
-            declare -p timing_map > "$MAP_FILE"
-            ) 199>$LOCK_FILE
+        if [ $bandwidth_to_throttle -gt 0 ]; then
+            if [ "${timing_map[applied]}" != "$bandwidth_to_throttle" ]; then
+                bandwidth_to_throttle_adj=$(($bandwidth_to_throttle*(100+$SAFETY_FACTOR)/100))
+                upload_limit=$(($MAX_UPLOAD_RATE-$bandwidth_to_throttle_adj))
+                if [ "$THROTTLE_UPLOAD" == "true" ]; then
+                    download_limit=$(($MAX_DOWNLOAD_RATE-($bandwidth_to_throttle*($DOWNLOAD_THROTTLE_FACTOR+$SAFETY_FACTOR)/100)))
+                else
+                    download_limit=0
+                fi
+                print_msg "External streams requiere $(($bandwidth_to_throttle/1024))kB/s. Throttling set at $(($download_limit/1024))/$(($upload_limit/1024)) kB/s"
+                timing_map[applied]="$bandwidth_to_throttle"
+                apply_throttling $download_limit $upload_limit
+            fi
+        else
+            if [ "${timing_map[applied]}" != "FALSE" ]; then
+                print_msg "No external client remaining. Throttling removed."
+                timing_map[applied]="FALSE"
+                apply_throttling 0 0
+            fi
         fi
+
+        declare -p timing_map > "$MAP_FILE"
+        ) 199>$LOCK_FILE
     fi
 }
 
