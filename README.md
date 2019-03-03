@@ -89,7 +89,7 @@ DOWNLOAD_THROTTLE_FACTOR=30
 Save the script (Ctrl+x from nano).
 Let's move it to an accessible location (could be at any location accessible to user running Tautulli). 
 ``` 
- sudo mv tautulli_rtorrent_throttler.sh /usr/bin/ 
+ sudo cp tautulli_rtorrent_throttler.sh /usr/bin/ 
  sudo chmod 775 /home/user/scripts/tautulli_rtorrent_throttler.sh 
 ```  
 **Tautulli config**  
