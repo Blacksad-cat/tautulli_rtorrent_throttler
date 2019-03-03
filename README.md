@@ -136,7 +136,8 @@ Watched
 -watched "{ip_address}" "{session_id}" "{remaining_duration}" "{stream_bandwidth}"
 ```  
 Save. 
-Tautulli configuration is done. 
+Tautulli configuration is done.   
+
 **Systemd timer**  
 Finally, we need to settup as timer checking if throttling is needed frequently. We will do that with a systemd timer, but you can use another system. All you need is calling the script with "check" flag. 
 ``` 
